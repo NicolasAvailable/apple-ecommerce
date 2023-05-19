@@ -6,5 +6,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'apple-ecommerce';
+
+  switchModal: boolean = false;
+
+  openModal(event: boolean){
+    this.switchModal = event
+  }
+
+  closeModal(){
+    this.switchModal = false;
+  }
 }

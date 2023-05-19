@@ -1,0 +1,19 @@
+.container-icon{
+    position: relative;
+}
+
+.count-products{
+    position: absolute;
+    top: -23%;
+    right: -12px;
+
+    font-weight: 600;
+    width: 25px;
+    height: 25px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}
+
