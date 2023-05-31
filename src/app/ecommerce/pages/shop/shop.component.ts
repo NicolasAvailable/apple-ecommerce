@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+
 import { Products } from '../../interfaces/product.interface';
-import { DataService } from '../../../data/data.service';
+import { EcommerceService } from '../../services/ecommerce.service';
 
 @Component({
   selector: 'app-shop',
@@ -9,12 +10,13 @@ import { DataService } from '../../../data/data.service';
 })
 export class ShopComponent implements OnInit {
 
-  products$: Products[] = [];
+  products$!: Products[];
 
-  constructor(private dataService: DataService) { }
+  constructor(private ES: EcommerceService) { }
 
   ngOnInit(): void {
-    this.dataService.getProductsFromFB().subscribe( products => {
+    this.ES.getProductsFromFB().
+    subscribe( products => {
       this.products$ = products
     })
   }

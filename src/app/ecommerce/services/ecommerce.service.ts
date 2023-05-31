@@ -23,35 +23,104 @@ export class EcommerceService extends DataService {
   private myCart = new BehaviorSubject<CartStorage>(this.cartStorage);
   myCart$ = this.myCart
 
-
   //this add a new product the cartStorage or updated it
-  addCart( product: Products){
+  addCart( product: Products, qty?: number ){
+    const productFind = this.cartStorage.products.find( p => p.id === product.id)
 
-    if(this.cartStorage.products.some(p => p.id === product.id)){
-      this.cartStorage.quantity += 1
-      this.cartStorage.totalPrice = this.calculatePrice()
-      this.myCart.next(this.cartStorage)
-      console.log('aqui estoy');
-      console.log(this.cartStorage);
+    if(product.qty === 0){
+      product.qty = 1
+    }
+
+    if(productFind){
+      productFind.qty += 1;
+      this.cartStorage.quantity += 1;
+      this.cartStorage.totalPrice = this.getTotalPrice(this.cartStorage);
+      this.myCart.next({...this.cartStorage});
+      this.saveCartProducts(this.cartStorage)
       return
     }
 
-    this.cartStorage.products.push(product)
-    this.cartStorage.quantity += 1
-    this.cartStorage.totalPrice = this.calculatePrice()
-    this.myCart.next(this.cartStorage)
-    console.log(this.cartStorage);
+    this.cartStorage.products.push(product);
+    this.cartStorage.quantity += qty || 1;
+    this.cartStorage.totalPrice = this.getTotalPrice(this.cartStorage);
+    this.myCart.next({...this.cartStorage});
+    this.saveCartProducts(this.cartStorage)
   }
 
+  // chequear porque despues de agregar un producto por primera vez pasa al if de productFind y se le modifi
+  // ca el qty
+  addCartFromAbout(product: Products){
+    const productFind = this.cartStorage.products.find( p => p.id === product.id)
+
+    if(productFind){
+      this.cartStorage.quantity += product.qty;
+      productFind.qty += product.qty
+      this.cartStorage.totalPrice = this.getTotalPrice(this.cartStorage);
+      this.myCart.next({...this.cartStorage});
+      this.saveCartProducts(this.cartStorage)
+      return
+    }
+
+    this.addCart(product, product.qty)
+    return
+  }
+
+  moreProduct(product: Products){
+    product.qty += 1;
+    return
+  }
+
+  lessProduct(product: Products ){
+    if(product.qty === 1) return
+    product.qty -= 1;
+    return
+  }
+
+  deleteProduct(product: Products){
+    
+    if(product.qty > 1){
+      product.qty -= 1;
+      this.cartStorage.quantity -= 1;
+      this.cartStorage.totalPrice = this.getTotalPrice(this.cartStorage);
+      this.myCart.next({...this.cartStorage});
+      this.saveCartProducts(this.cartStorage)
+      return
+    }
+
+    this.deleteAllProduct(product)
+    return
+  }
+
+
+  deleteAllProduct(product: Products){
+    const index = this.cartStorage.products.findIndex(item => item.id === product.id);
+
+    if (index !== -1) {
+      this.cartStorage.products.splice(index, 1);
+      this.cartStorage.quantity -= product.qty;
+      product.qty -= product.qty;
+      this.cartStorage.totalPrice = this.getTotalPrice(this.cartStorage);
+      this.myCart.next({...this.cartStorage});
+      this.saveCartProducts(this.cartStorage)
+    }
+  }
+
+
+  //TODO: to fix the issues with the final price
   // this function calculate the final price
-  calculatePrice(){
-    let totalPrice = 0;
-    this.cartStorage.products.forEach( product => {
-      totalPrice = totalPrice + product.price;
-    })
-    // totalPrice = this.cartStorage.products.reduce((total, product) => total + (product.price * this.cartStorage.quantity), 0);
-    console.log(totalPrice * this.cartStorage.quantity);
-    return totalPrice * this.cartStorage.quantity
+  getTotalPrice(cartStorage: CartStorage): number {
+    return cartStorage.products.reduce((total, product) => total + (product.price * product.qty), 0);
+  }
+  
+
+  saveCartProducts( cartStorage: CartStorage ){
+    localStorage.setItem('cartstorage', JSON.stringify(cartStorage));
+  }
+
+  getLocalStorage(){
+    const cartStorageFromLS = localStorage.getItem('cartstorage');
+    this.cartStorage = cartStorageFromLS ? JSON.parse(cartStorageFromLS) : {products: [], quantity: 0, totalPrice: 0 };
+    this.myCart.next({...this.cartStorage})
   }
   
 

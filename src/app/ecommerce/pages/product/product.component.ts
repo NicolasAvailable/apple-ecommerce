@@ -11,7 +11,8 @@ export class ProductComponent implements OnInit {
 
   @Input() productInput!: Products;
 
-  constructor( public ES: EcommerceService ) { }
+  constructor( public ES: EcommerceService,
+                ) { }
 
   ngOnInit(): void {
   }

@@ -16,4 +16,9 @@ export class DataService {
     const url = `${this.urlDataBase}/products.json`
     return this.http.get<Products[]>(url);
   }
+
+  getOneProduct(id: number){
+    const url = `${this.urlDataBase}/products/${id}.json`
+    return this.http.get<Products>(url);
+  }
 }

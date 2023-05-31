@@ -1,0 +1,13 @@
+
+
+.custome-h-w{
+    min-height: 410px;
+    width: 280px;
+}
+
+@media (max-width: 650px) {
+    .custome-h-w{
+        min-height: 390px;
+        width: 240px;
+    }
+}

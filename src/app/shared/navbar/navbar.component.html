@@ -1,8 +1,8 @@
 
-<div class="flex h-16 min-w-full bg-bg-easy">
+<div class="flex h-16 min-w-full bg-bg-easy fixed">
     <div class="grid grid-cols-7 min-w-full">        
         <div class="col-span-2 flex justify-start items-center">
-            <div routerLink="" class="text-3xl ml-7 cursor-pointer">
+            <div routerLink="" class="text-2xl sm:text-3xl ml-7 cursor-pointer">
                 <h1>
                     <i class='bx bxl-apple text-white'></i>
                 </h1>
@@ -10,13 +10,13 @@
         </div>
         <ul class="col-span-3 flex justify-center items-center">
             <li routerLinkActive="bg-bg-clear" [routerLinkActiveOptions]="{exact: true}"
-            class="h-8 w-20 mx-4 text-lg text-center font-bold text-white cursor-pointer hover:bg-bg-clear">
+            class="h-8 w-20 mr-1 flex justify-center items-center text-base sm:text-lg text-center font-bold text-white cursor-pointer hover:bg-bg-clear">
                 <h3 routerLink="">
                     Home
                 </h3>
             </li>
             <li routerLinkActive="bg-bg-clear" [routerLinkActiveOptions]="{exact: true}" 
-            class="h-8 w-24 mx-4 text-lg text-center font-bold text-white cursor-pointer hover:bg-bg-clear">
+            class="h-8 w-24 ml-1 flex justify-center items-center text-base sm:text-lg text-center font-bold text-white cursor-pointer hover:bg-bg-clear">
                 <h3 routerLink="/products">
                     Products
                 </h3>
@@ -24,7 +24,7 @@
         </ul>
         <div class="col-span-2 flex justify-end items-center">
             <div (click)="openModal()" class="container-icon mr-7 cursor-pointer">
-                <div class="text-3xl">
+                <div class="text-2xl sm:text-3xl">
                     <i class='bx bx-shopping-bag text-white'></i>
                 </div>
 				<div class="count-products text-white">

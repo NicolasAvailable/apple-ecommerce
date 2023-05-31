@@ -1,7 +1,12 @@
 
 
 <div class="min-w-screen">
-    <div class="grid grid-cols-4 m-16 p-6 shadow-lg">
-        <app-products *ngFor="let product of products$" [productInput]="product"></app-products>
+    <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 my-6 mx-9 py-4 px-6 sm:m-16 sm:p-6 shadow-lg">
+        <ng-container *ngIf="products$; else loadinglogo">
+            <app-products *ngFor="let product of products$" [productInput]="product" class="flex justify-center items-center"></app-products>
+        </ng-container>
+        <ng-template #loadinglogo>
+            <app-loading-logo class="col-span-4 flex justify-center items-center"></app-loading-logo>
+        </ng-template>
     </div>
 </div>

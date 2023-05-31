@@ -1,0 +1,22 @@
+<article class="flex-col sm:grid sm:grid-cols-5 border border-slate-100 shadow py-3 my-3 mx-4">
+    <div class="col-span-2 flex justify-center items-center my-2">
+        <img class="h-20 sm:h-28" [src]="product.img" [alt]="product.name">
+    </div>
+    <div class="sm:col-span-3 grid grid-rows-3 content-center place-content-center px-5">
+        <div class="row-span-2">
+            <h5 class="text-base sm:text-lg font-semibold mb-2">{{product.name}}</h5>
+            <p class="mb-1 hidden sm:grid">{{product.identifier}}</p>
+            <p>{{ product.price | currency }}</p>
+            <div class="flex justify-start items-center mt-1">
+                <button (click)="ES.deleteProduct(product)" class="text-xl font-bold">-</button>
+                <span class="mx-2">{{product.qty}}</span>
+                <button (click)="ES.addCart(product)" class="text-xl font-extrabold">+</button>
+            </div>
+        </div>
+        <div class="sm:col-span-1 grid grid-cols-1 content-center">
+            <div class="col-span-1 flex justify-start items-start">
+                <button (click)="ES.deleteAllProduct(product)"><i class='bx bx-trash text-xl sm:text-2xl'></i></button>
+            </div>
+        </div>
+    </div>
+</article>

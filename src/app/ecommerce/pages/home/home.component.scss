@@ -7,3 +7,17 @@
 .height-img{
     height: 450px;
 }
+
+.height-mac{
+    height: 350px;
+}
+
+@media (max-width: 640px) {
+    .height-img{
+        height: 240px;
+    }
+
+    .customme-height{
+        height: 430px;
+    }
+}

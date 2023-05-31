@@ -17,3 +17,8 @@
     border-radius: 50%;
 }
 
+@media (max-width: 650px) {
+    .count-products{
+        font-size: 13px;
+    }
+}
