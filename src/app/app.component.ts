@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EcommerceService } from './ecommerce/services/ecommerce.service';
 import { CartStorage } from './ecommerce/interfaces/cart-storage.interface';
+import { ModalService } from './ecommerce/modal/modal.service';
 
 @Component({
   selector: 'app-root',
@@ -11,19 +12,11 @@ export class AppComponent implements OnInit {
 
   switchModal: boolean = false;
 
-  constructor( private ES: EcommerceService ) { }
+  constructor( private ES: EcommerceService,
+               public modalService: ModalService ) { }
 
   ngOnInit(): void {
     this.ES.getLocalStorage()
   }
-
-  openModal(event: boolean){
-    this.switchModal = event
-  }
-
-  closeModal( event: boolean ){
-    this.switchModal = event;
-  }
-
 
 }

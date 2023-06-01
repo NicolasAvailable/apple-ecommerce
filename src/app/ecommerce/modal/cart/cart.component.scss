@@ -1,0 +1,11 @@
+
+
+.custome-width{
+    width: 40%;
+}
+
+@media (max-width: 640px) {
+    .custome-width{
+        width: 62%;
+    }
+}

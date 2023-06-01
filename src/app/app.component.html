@@ -1,12 +1,12 @@
 
 <div class="grid grid-rows-10 relative" >
     <header class="row-span-3 h-16">
-        <app-navbar (modal)="openModal($event)"></app-navbar>
+        <app-navbar></app-navbar>
     </header>
     <main class="row-span-7">
         <router-outlet class="h-auto"></router-outlet>
     </main>
-    <ng-container *ngIf="switchModal === true">
-        <app-cart (modalOpen)="closeModal($event)" class="relative top-0 left-0 w-full h-full"></app-cart>
+    <ng-container *ngIf="modalService.isOpen === true">
+        <app-cart class="relative top-0 left-0 w-full h-full"></app-cart>
     </ng-container>
 </div>

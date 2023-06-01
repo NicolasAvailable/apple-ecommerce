@@ -1,11 +1,12 @@
 
-<div *ngIf="product; else loadinglogo" class="custome-heigth min-w-full grid grid-rows-2 sm:grid-cols-2 pb-9 px-5 sm:px-9 sm:pb-0">
-    <div class="h-full w-full flex justify-center items-center">
+<div *ngIf="product; else loadinglogo" 
+    class="custome-heigth min-w-full flex flex-col sm:grid sm:grid-cols-2 pb-9 px-5 sm:px-9 sm:pb-0">
+    <div class="sm:col-span-1 h-full w-full flex justify-center items-center my-20 sm:my-0">
         <div>
             <img class="h-40 w-40 sm:h-80 sm:w-72" [src]="product.img" [alt]="product.name">
         </div>
     </div>
-    <div class="h-full w-full flex flex-col justify-center items-start">
+    <div class="sm:col-span-1 h-full w-full flex flex-col justify-center items-start">
         <section class="h-80 px-6">
             <div class="sm:grid mb-1 sm:mb-6">
                 <h2 class="flex items-center text-2xl sm:text-3xl font-bold h-16">{{product.name}}</h2>

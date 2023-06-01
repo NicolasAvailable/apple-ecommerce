@@ -99,6 +99,7 @@ export class EcommerceService extends DataService {
       this.cartStorage.products.splice(index, 1);
       this.cartStorage.quantity -= product.qty;
       product.qty -= product.qty;
+      product.qty = 1;
       this.cartStorage.totalPrice = this.getTotalPrice(this.cartStorage);
       this.myCart.next({...this.cartStorage});
       this.saveCartProducts(this.cartStorage)

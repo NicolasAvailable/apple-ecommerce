@@ -3,6 +3,7 @@ import { EcommerceService } from '../../services/ecommerce.service';
 
 import { Products } from '../../interfaces/product.interface';
 import { Router } from '@angular/router';
+import { ModalService } from '../modal.service';
 
 @Component({
   selector: 'app-cart',
@@ -11,13 +12,13 @@ import { Router } from '@angular/router';
 })
 export class CartComponent implements OnInit {
 
-  @Output() modalOpen = new EventEmitter<boolean>();
   products: Products[] = [];
   currentQuantity: number = 0;
   subtotal: number = 0;
 
   constructor( private ES: EcommerceService,
-               private router: Router  ) { }
+               private router: Router,
+               public modalService: ModalService  ) { }
 
   ngOnInit(): void {
     
@@ -28,10 +29,6 @@ export class CartComponent implements OnInit {
       this.subtotal =  totalPrice
       
     })
-  }
-
-  closeModal(){
-    this.modalOpen.emit(false)
   }
 
   goToShop(){

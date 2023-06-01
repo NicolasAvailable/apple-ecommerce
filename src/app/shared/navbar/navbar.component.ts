@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { CartStorage } from 'src/app/ecommerce/interfaces/cart-storage.interface';
+import { ModalService } from 'src/app/ecommerce/modal/modal.service';
 import { EcommerceService } from 'src/app/ecommerce/services/ecommerce.service';
 
 @Component({
@@ -11,19 +12,15 @@ import { EcommerceService } from 'src/app/ecommerce/services/ecommerce.service';
 })
 export class NavbarComponent implements OnInit {
 
-  @Output() modal = new EventEmitter<boolean>()
   myCart!: CartStorage;
 
-  constructor( public ES: EcommerceService ) { }
+  constructor( public ES: EcommerceService,
+               public modalService: ModalService ) { }
 
   ngOnInit(): void {
     this.ES.myCart$.subscribe(cartStorage => {
       this.myCart = cartStorage
     })
-  }
-
-  openModal(){
-    this.modal.emit(true)
   }
 
 }
