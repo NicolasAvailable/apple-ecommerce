@@ -4,7 +4,7 @@ Welcome to our official page! here you are going to find all our products in sto
 
 This page was created with angular, firebase, tailwind, typescript and scss. If you see something that it could be done better just make a pull request and i'll accept it and thank you.
 
-![apple-ecommerce-img](https://i.imgur.com/zJDjbBy.jpg)
+![apple-ecommerce-img](https://i.ibb.co/X5z8QYC/apple-portada.png)
 
 ## Quickstart 👀
 
