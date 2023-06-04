@@ -47,8 +47,6 @@ export class EcommerceService extends DataService {
     this.saveCartProducts(this.cartStorage)
   }
 
-  // chequear porque despues de agregar un producto por primera vez pasa al if de productFind y se le modifi
-  // ca el qty
   addCartFromAbout(product: Products){
     const productFind = this.cartStorage.products.find( p => p.id === product.id)
 
@@ -107,7 +105,6 @@ export class EcommerceService extends DataService {
   }
 
 
-  //TODO: to fix the issues with the final price
   // this function calculate the final price
   getTotalPrice(cartStorage: CartStorage): number {
     return cartStorage.products.reduce((total, product) => total + (product.price * product.qty), 0);
